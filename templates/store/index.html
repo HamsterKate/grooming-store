@@ -1,9 +1,12 @@
+{% extends "base.html" %}
 
+{% block content %}
+	<h1>Grooming Store</h1>
+  <p><i>Welcome to your pet paradise</i></p>
+  <ul>
+    <li>Number of specialists for your service: {{ num_groomers }}</li>
+    <li>Service types q-ty: {{ num_services }}</li>
+    <li>Number of our customers: {{ num_pets }}</li>
+  </ul>
+{% endblock %}
 
-<h1>Grooming Store</h1>
-<p><i>Welcome to your pet paradise</i></p>
-<ul>
-  <li>Number of specialists for your service: {{ num_groomers }}</li>
-  <li>Service types q-ty: {{ num_services }}</li>
-  <li>Number of our customers: {{ num_pets }}</li>
-</ul>
