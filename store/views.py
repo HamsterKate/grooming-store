@@ -28,13 +28,26 @@ class GroomerView(generic.ListView):
     paginate_by = 10
 
 
+class GroomerDetailView(generic.DetailView):
+    model = Groomer
+
+
 class ServiceView(generic.ListView):
     model = Service
     queryset = Service.objects.all()
     paginate_by = 10
 
 
+class ServiceDetailView(generic.DetailView):
+    model = Service
+
+
 class PetView(generic.ListView):
     model = Pet
     queryset = Pet.objects.select_related("groomer").prefetch_related("services")
     paginate_by = 10
+
+
+class PetDetailView(generic.DetailView):
+    model = Pet
+    queryset = Pet.objects.select_related("groomer").prefetch_related("services")
