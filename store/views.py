@@ -25,6 +25,7 @@ def index(request):
 class GroomerView(generic.ListView):
     model = Groomer
     queryset = Groomer.objects.all()
+    context_object_name = "groomers"
     paginate_by = 10
 
 
@@ -35,6 +36,7 @@ class GroomerDetailView(generic.DetailView):
 class ServiceView(generic.ListView):
     model = Service
     queryset = Service.objects.all()
+    context_object_name = "services"
     paginate_by = 10
 
 
@@ -45,6 +47,7 @@ class ServiceDetailView(generic.DetailView):
 class PetView(generic.ListView):
     model = Pet
     queryset = Pet.objects.select_related("groomer").prefetch_related("services")
+    context_object_name = "pets"
     paginate_by = 10
 
 
