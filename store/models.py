@@ -49,7 +49,7 @@ class Groomer(models.Model):
     last_name = models.CharField(
         max_length=50,
     )
-    qualifications = models.ManyToManyField(
+    qualifications= models.ManyToManyField(
         Qualification,
         related_name="groomers",
         blank=True,
@@ -57,7 +57,7 @@ class Groomer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} ({self.qualification})"
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
         db_table = "groomers"
