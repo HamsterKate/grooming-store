@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from store.models import Groomer, Service, Pet
 
@@ -19,3 +20,21 @@ def index(request):
         "store/index.html",
         context=context,
     )
+
+
+class GroomerView(generic.ListView):
+    model = Groomer
+    queryset = Groomer.objects.all()
+    paginate_by = 10
+
+
+class ServiceView(generic.ListView):
+    model = Service
+    queryset = Service.objects.all()
+    paginate_by = 10
+
+
+class PetView(generic.ListView):
+    model = Pet
+    queryset = Pet.objects.select_related("groomer").prefetch_related("services")
+    paginate_by = 10
