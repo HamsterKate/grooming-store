@@ -29,6 +29,19 @@ class Service(models.Model):
         ordering = ["name"]
 
 
+class Qualification(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = "qualifications"
+        verbose_name = "Qualification"
+        verbose_name_plural = "Qualifications"
+        ordering = ["name"]
+
+
 class Groomer(models.Model):
     first_name = models.CharField(
         max_length=50,
@@ -36,8 +49,10 @@ class Groomer(models.Model):
     last_name = models.CharField(
         max_length=50,
     )
-    qualification = models.CharField(
-        max_length=50,
+    qualifications = models.ManyToManyField(
+        Qualification,
+        related_name="groomers",
+        blank=True,
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
