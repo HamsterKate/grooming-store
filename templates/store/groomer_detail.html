@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Groomer Info</h1>
+  <p><strong>Groomer:</strong>
+    {{ groomer.first_name }} {{ groomer.last_name }}
+  </p>
+
+  <p><strong>With us since: </strong>{{ groomer.created_at }}</p>
+  <p><strong>Qualifications:</strong></p>
+  <ul>
+    {% for qualification in groomer.qualifications.all %}
+      <li>{{ qualification.name }}</li>
+      {% empty %}
+    <li>No qualifications assigned</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
