@@ -1,3 +1,5 @@
+{% load query_transform %}
+
 {% if is_paginated %}
 
 <nav aria-label="Page navigation">
@@ -6,7 +8,7 @@
     {% if page_obj.has_previous %}
       <li class="page-item">
         <a class="page-link"
-           href="?page={{ page_obj.previous_page_number }}">
+           href="?{% query_transform request page=page_obj.previous_page_number %}">
           Previous
         </a>
       </li>
@@ -23,7 +25,10 @@
         </li>
       {% else %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+          <a class="page-link"
+             href="?{% query_transform request page=num %}">
+            {{ num }}
+          </a>
         </li>
       {% endif %}
     {% endfor %}
@@ -31,7 +36,7 @@
     {% if page_obj.has_next %}
       <li class="page-item">
         <a class="page-link"
-           href="?page={{ page_obj.next_page_number }}">
+           href="?{% query_transform request page=page_obj.next_page_number %}">
           Next
         </a>
       </li>
