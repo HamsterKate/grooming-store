@@ -4,7 +4,7 @@ from .models import Service, Groomer, Pet, Qualification
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("name", "service_type")
+    list_display = ("name", "service_type", "description",)
     list_filter = ("service_type",)
     search_fields = ("name",)
     ordering = ("name",)

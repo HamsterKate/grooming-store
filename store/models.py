@@ -18,6 +18,7 @@ class Service(models.Model):
         choices=ServiceType,
         default=ServiceType.BASIC,
     )
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
