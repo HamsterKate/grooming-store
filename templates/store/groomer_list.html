@@ -14,12 +14,12 @@
     	<tr>
         <td>{{ groomer.id }}</td>
         <td>
-          <a href="{{ groomer.get_absolut_url }}">
+          <a href="{% url 'store:groomer-detail' groomer.pk %}">
             {{ groomer.first_name }} {{ groomer.last_name }}
           </a>
         </td>
         <td>
-          {% for q in groomer.qualifications.all %}
+          {% for q in groomer.qualifications.all|dictsort:"name" %}
             {{ q.name }}<br>
           {% empty %}
             No qualifications
