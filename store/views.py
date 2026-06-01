@@ -53,4 +53,9 @@ class PetView(generic.ListView):
 
 class PetDetailView(generic.DetailView):
     model = Pet
-    queryset = Pet.objects.select_related("groomer").prefetch_related("services")
+    queryset = Pet.objects.select_related("groomer").prefetch_related(
+        "services",
+        "petservice_set__service",
+        "petservice_set__groomer",
+    )
+    context_object_name = "pet"
