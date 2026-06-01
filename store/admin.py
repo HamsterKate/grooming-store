@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, Groomer, Pet, Qualification
+from .models import Service, Groomer, Pet, Qualification, PetService
 
 
 @admin.register(Service)
@@ -28,10 +28,26 @@ class GroomerAdmin(admin.ModelAdmin):
     show_qualifications.short_description = "Qualifications"
 
 
+class PetServiceInline(admin.TabularInline):
+    model = PetService
+    extra = 0
+
+
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
     list_display = ("name", "species", "breed", "groomer")
     search_fields = ("name", "species", "breed")
     list_filter = ("species", "groomer", "services")
     autocomplete_fields = ("groomer", "services")
+    inlines = [PetServiceInline]
+
+
+@admin.register(PetService)
+class PetServiceAdmin(admin.ModelAdmin):
+    list_display = ("pet", "service", "groomer", "date", "created_at")
+    list_filter = ("service", "groomer", "date")
+    search_fields = ("pet__name", "service__name", "groomer__first_name")
+    autocomplete_fields = ("pet", "service", "groomer")
+
+
 
