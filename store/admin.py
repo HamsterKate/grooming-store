@@ -30,12 +30,18 @@ class GroomerAdmin(admin.ModelAdmin):
 
 class PetServiceInline(admin.TabularInline):
     model = PetService
-    extra = 0
+    extra = 1
+    autocomplete_fields = ("service", "groomer")
 
 
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
-    list_display = ("name", "species", "breed", "groomer")
+    list_display = ("name", "species", "breed", "groomer", "show_services")
+
+    def show_services(self, obj):
+        return ", ".join(p.service.name for p in obj.petservice_set.all())
+
+    show_services.short_description = "Services"
     search_fields = ("name", "species", "breed")
     list_filter = ("species", "groomer", "services")
     autocomplete_fields = ("groomer", "services")

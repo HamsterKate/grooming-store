@@ -92,8 +92,7 @@ class Pet(models.Model):
     services = models.ManyToManyField(
         Service,
         blank=True,
-        through="PetService",
-        related_name="pets",
+        related_name="pets"
     )
 
     class Meta:
