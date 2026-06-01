@@ -5,12 +5,14 @@
   {% if services %}
   	<table class="table">
       <tr>
+        <th>#</th>
         <th>Service</th>
         <th>Service Type</th>
         <th>Service Description</th>
       </tr>
     {% for service in services %}
     	<tr>
+        <td>{{ forloop.counter }}</td>
         <td>
           <a href="{% url 'store:service-detail' service.pk %}">
             {{ service.name }}
