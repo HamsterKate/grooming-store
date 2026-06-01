@@ -12,9 +12,9 @@
     {% for service in services %}
     	<tr>
         <td>
-{#          <a href="{% url 'store:service-detail' service.pk %}">#}
+          <a href="{% url 'store:service-detail' service.pk %}">
             {{ service.name }}
-{#          </a>#}
+          </a>
         </td>
         <td>{{ service.service_type }}</td>
         <td>{{ service.description }}</td>
