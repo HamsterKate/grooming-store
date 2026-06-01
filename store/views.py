@@ -26,7 +26,7 @@ class GroomerView(generic.ListView):
     model = Groomer
     queryset = Groomer.objects.all()
     context_object_name = "groomers"
-    paginate_by = 10
+    paginate_by = 2
 
 
 class GroomerDetailView(generic.DetailView):
