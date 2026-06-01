@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-md-2">
       {% block sidebar %}
-        Sidebar
+{#        Sidebar#}
       	{% include "includes/sidebar.html" %}
       {% endblock %}
     </div>
@@ -30,6 +30,10 @@
       {% block content %}{% endblock %}
 {#      {% block pagination %}{% endblock %}#}
     </div>
+      {% block footer %}
+{#        Footer#}
+      	{% include "includes/footer.html" %}
+      {% endblock %}
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
