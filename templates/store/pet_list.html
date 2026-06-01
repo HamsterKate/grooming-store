@@ -14,9 +14,9 @@
     	<tr>
         <td>{{ pet.id }}</td>
         <td>
-{#          <a href="{% url 'store:pet-detail' groomer.pk %}">#}
+          <a href="{% url 'store:pet-detail' pet.pk %}">
             {{ pet.name }}
-{#          </a>#}
+          </a>
         </td>
         <td>{{ pet.breed }}</td>
         <td>{{ pet.last_service.service.name|default:"No services yet" }}</td>
