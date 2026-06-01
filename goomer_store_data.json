@@ -1,0 +1,124 @@
+[
+  {
+    "model": "store.qualification",
+    "pk": 1,
+    "fields": { "name": "Certified Pet Groomer" }
+  },
+  {
+    "model": "store.qualification",
+    "pk": 2,
+    "fields": { "name": "Senior Groomer" }
+  },
+  {
+    "model": "store.qualification",
+    "pk": 3,
+    "fields": { "name": "Animal First Aid Certified" }
+  },
+  {
+    "model": "store.qualification",
+    "pk": 4,
+    "fields": { "name": "Spa & Wellness Specialist" }
+  },
+
+  {
+    "model": "store.groomer",
+    "pk": 1,
+    "fields": {
+      "first_name": "Anna",
+      "last_name": "Kovalenko",
+      "created_at": "2026-06-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "store.groomer",
+    "pk": 2,
+    "fields": {
+      "first_name": "Daniel",
+      "last_name": "Smith",
+      "created_at": "2026-06-01T10:00:00Z"
+    }
+  },
+
+  {
+    "model": "store.service",
+    "pk": 1,
+    "fields": {
+      "name": "Full Dog Grooming",
+      "service_type": "full",
+      "description": "Complete grooming package for dogs."
+    }
+  },
+  {
+    "model": "store.service",
+    "pk": 2,
+    "fields": {
+      "name": "Aromatherapy Bath",
+      "service_type": "spa",
+      "description": "Relaxing aromatherapy spa treatment for pets."
+    }
+  },
+  {
+    "model": "store.service",
+    "pk": 3,
+    "fields": {
+      "name": "Nail Trimming",
+      "service_type": "basic",
+      "description": "Basic nail trimming and paw care."
+    }
+  },
+
+  {
+    "model": "store.pet",
+    "pk": 1,
+    "fields": {
+      "name": "Bella",
+      "species": "Dog",
+      "breed": "Golden Retriever",
+      "groomer": 1
+    }
+  },
+  {
+    "model": "store.pet",
+    "pk": 2,
+    "fields": {
+      "name": "Oliver",
+      "species": "Cat",
+      "breed": "British Shorthair",
+      "groomer": 2
+    }
+  },
+
+  {
+    "model": "store.petservice",
+    "pk": 1,
+    "fields": {
+      "pet": 1,
+      "service": 1,
+      "groomer": 1,
+      "date": "2026-06-01T12:00:00Z",
+      "created_at": "2026-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "store.petservice",
+    "pk": 2,
+    "fields": {
+      "pet": 1,
+      "service": 2,
+      "groomer": 1,
+      "date": "2026-06-02T12:00:00Z",
+      "created_at": "2026-06-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "store.petservice",
+    "pk": 3,
+    "fields": {
+      "pet": 2,
+      "service": 3,
+      "groomer": 2,
+      "date": "2026-06-03T12:00:00Z",
+      "created_at": "2026-06-03T12:00:00Z"
+    }
+  }
+]
