@@ -95,6 +95,10 @@ class Pet(models.Model):
         related_name="pets"
     )
 
+    @property
+    def last_service(self):
+        return self.petservice_set.select_related("service").order_by("-date").first()
+
     class Meta:
         db_table = "pets"
         verbose_name = "Pet"

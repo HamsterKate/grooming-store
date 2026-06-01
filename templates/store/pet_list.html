@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>OUR LOVELY CUSTOMERS</h1>
+  {% if pets %}
+  	<table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Breed</th>
+        <th>Last Service</th>
+      </tr>
+    {% for pet in pets %}
+    	<tr>
+        <td>{{ pet.id }}</td>
+        <td>
+{#          <a href="{% url 'store:pet-detail' groomer.pk %}">#}
+            {{ pet.name }}
+{#          </a>#}
+        </td>
+        <td>{{ pet.breed }}</td>
+        <td>{{ pet.last_service.service.name|default:"No services yet" }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    <p>Waiting for our first customer</p>
+  {% endif %}
+{% endblock %}
