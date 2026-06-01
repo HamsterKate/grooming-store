@@ -92,6 +92,7 @@ class Pet(models.Model):
     services = models.ManyToManyField(
         Service,
         blank=True,
+        through="PetService",
         related_name="pets",
     )
 
@@ -103,3 +104,16 @@ class Pet(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class PetService(models.Model):
+    pet = models.ForeignKey("Pet", on_delete=models.CASCADE)
+    service = models.ForeignKey("Service", on_delete=models.CASCADE)
+    groomer = models.ForeignKey("Groomer", on_delete=models.SET_NULL, null=True, blank=True)
+
+    date = models.DateTimeField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.pet.name} - {self.service.name} ({self.date})"
