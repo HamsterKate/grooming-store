@@ -3,6 +3,20 @@
     Grooming Store
   </a>
 
+  <form method="get" class="form-inline mx-auto">
+    <input
+        type="text"
+        name="query"
+        class="form-control mr-2"
+        placeholder="Search..."
+        value="{{ request.GET.query }}"
+    >
+
+    <button class="btn btn-outline-primary btn-sm">
+      Search
+    </button>
+  </form>
+
   <div class="ml-auto">
     {% if user.is_authenticated %}
       <span class="mr-3">
