@@ -6,7 +6,7 @@ SEARCH_FIELDS = {
     ],
     "service-list": [
         ("name", "Name"),
-        ("type", "Type"),
+        ("service_type", "Type"),
     ],
     "pet-list": [
         ("name", "Name"),
@@ -20,6 +20,6 @@ FIELD_LOOKUP = {
     "qualification": "qualifications__name__icontains",
 
     "name": "name__icontains",
-    "type": "type__icontains",
+    "service_type": "service_type__icontains",
     "breed": "breed__icontains",
 }
