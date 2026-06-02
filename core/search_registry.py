@@ -8,6 +8,10 @@ SEARCH_FIELDS = {
         ("name", "Name"),
         ("type", "Type"),
     ],
+    "pet-list": [
+        ("name", "Name"),
+        ("breed", "Breed"),
+    ],
 }
 
 FIELD_LOOKUP = {
@@ -17,4 +21,5 @@ FIELD_LOOKUP = {
 
     "name": "name__icontains",
     "type": "type__icontains",
+    "breed": "breed__icontains",
 }
