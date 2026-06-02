@@ -1,5 +1,7 @@
 from django import forms
 
+from core.forms import
+
 
 class SearchForm(forms.Form):
     query = forms.CharField(

@@ -1,4 +1,4 @@
-from store.forms import SearchForm
+from core.forms import SearchForm
 
 
 def search_form(request):
