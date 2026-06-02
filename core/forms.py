@@ -1,7 +1,5 @@
 from django import forms
 
-from core.forms import
-
 
 class SearchForm(forms.Form):
     query = forms.CharField(
@@ -9,7 +7,10 @@ class SearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search..."},
+            attrs={
+                "placeholder": "Search...",
+                "class": "form-control form-control-sm",
+            },
         ),
     )
     field = forms.CharField(
