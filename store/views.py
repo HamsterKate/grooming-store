@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
+from django.db.models import Q
 
 from store.models import Groomer, Service, Pet
-
+from core.search_registry import FIELD_LOOKUP
 
 # Create your views here.
 def index(request):
@@ -24,24 +25,24 @@ def index(request):
 
 class GroomerListView(generic.ListView):
     model = Groomer
-    queryset = Groomer.objects.all()
     context_object_name = "groomers"
     paginate_by = 2
-    search_fields = [
-        ("first_name", "FirtName"),
-        ("qualification", "Qualification"),
-    ]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_queryset(self):
+        queryset = super().get_queryset()
 
-        context["search_fields"] = [
-            ("name", "Name"),
-            ("specialization", "Specialization"),
-        ]
+        query = self.request.GET.get("query")
+        field = self.request.GET.get("field")
 
-        return context
+        if query and field:
+            lookup = FIELD_LOOKUP.get(field)
 
+            if lookup:
+                queryset = queryset.filter(
+                    Q(**{lookup: query})
+                )
+
+        return queryset
 
 class GroomerDetailView(generic.DetailView):
     model = Groomer
