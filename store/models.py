@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -44,6 +45,12 @@ class Qualification(models.Model):
 
 
 class Groomer(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="groomer_profile",
+    )
+
     first_name = models.CharField(
         max_length=50,
     )
