@@ -1,5 +1,46 @@
 [
   {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "anna",
+      "password": "pbkdf2_sha256$260000$test$test",
+      "is_staff": false,
+      "is_superuser": false
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "daniel",
+      "password": "pbkdf2_sha256$260000$test$test",
+      "is_staff": false,
+      "is_superuser": false
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": { "username": "olga", "password": "test" }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": { "username": "mike", "password": "test" }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": { "username": "kate", "password": "test" }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": { "username": "john", "password": "test" }
+  },
+
+  {
     "model": "store.qualification",
     "pk": 1,
     "fields": { "name": "Certified Pet Groomer" }
@@ -17,13 +58,24 @@
   {
     "model": "store.qualification",
     "pk": 4,
-    "fields": { "name": "Spa & Wellness Specialist" }
+    "fields": { "name": "Spa Specialist" }
+  },
+  {
+    "model": "store.qualification",
+    "pk": 5,
+    "fields": { "name": "Junior Groomer" }
+  },
+  {
+    "model": "store.qualification",
+    "pk": 6,
+    "fields": { "name": "Veterinary Assistant" }
   },
 
   {
     "model": "store.groomer",
     "pk": 1,
     "fields": {
+      "user": 1,
       "first_name": "Anna",
       "last_name": "Kovalenko",
       "created_at": "2026-06-01T10:00:00Z"
@@ -33,8 +85,49 @@
     "model": "store.groomer",
     "pk": 2,
     "fields": {
+      "user": 2,
       "first_name": "Daniel",
       "last_name": "Smith",
+      "created_at": "2026-06-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "store.groomer",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "first_name": "Olga",
+      "last_name": "Ivanova",
+      "created_at": "2026-06-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "store.groomer",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "first_name": "Mike",
+      "last_name": "Brown",
+      "created_at": "2026-06-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "store.groomer",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "first_name": "Kate",
+      "last_name": "Johnson",
+      "created_at": "2026-06-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "store.groomer",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "first_name": "John",
+      "last_name": "Williams",
       "created_at": "2026-06-01T10:00:00Z"
     }
   },
@@ -54,7 +147,7 @@
     "fields": {
       "name": "Aromatherapy Bath",
       "service_type": "spa",
-      "description": "Relaxing aromatherapy spa treatment for pets."
+      "description": "Relaxing spa treatment."
     }
   },
   {
@@ -63,62 +156,96 @@
     "fields": {
       "name": "Nail Trimming",
       "service_type": "basic",
-      "description": "Basic nail trimming and paw care."
+      "description": "Basic nail care."
+    }
+  },
+  {
+    "model": "store.service",
+    "pk": 4,
+    "fields": {
+      "name": "Fur Styling",
+      "service_type": "full",
+      "description": "Stylish grooming."
+    }
+  },
+  {
+    "model": "store.service",
+    "pk": 5,
+    "fields": {
+      "name": "Ear Cleaning",
+      "service_type": "basic",
+      "description": "Hygiene service."
+    }
+  },
+  {
+    "model": "store.service",
+    "pk": 6,
+    "fields": {
+      "name": "Luxury Spa Day",
+      "service_type": "spa",
+      "description": "Full relaxation package."
     }
   },
 
   {
     "model": "store.pet",
     "pk": 1,
-    "fields": {
-      "name": "Bella",
-      "species": "Dog",
-      "breed": "Golden Retriever",
-      "groomer": 1
-    }
+    "fields": { "name": "Bella", "species": "Dog", "breed": "Golden Retriever", "groomer": 1 }
   },
   {
     "model": "store.pet",
     "pk": 2,
-    "fields": {
-      "name": "Oliver",
-      "species": "Cat",
-      "breed": "British Shorthair",
-      "groomer": 2
-    }
+    "fields": { "name": "Oliver", "species": "Cat", "breed": "British Shorthair", "groomer": 2 }
+  },
+  {
+    "model": "store.pet",
+    "pk": 3,
+    "fields": { "name": "Max", "species": "Dog", "breed": "Husky", "groomer": 3 }
+  },
+  {
+    "model": "store.pet",
+    "pk": 4,
+    "fields": { "name": "Luna", "species": "Cat", "breed": "Siamese", "groomer": 4 }
+  },
+  {
+    "model": "store.pet",
+    "pk": 5,
+    "fields": { "name": "Charlie", "species": "Dog", "breed": "Poodle", "groomer": 5 }
+  },
+  {
+    "model": "store.pet",
+    "pk": 6,
+    "fields": { "name": "Milo", "species": "Cat", "breed": "Maine Coon", "groomer": 6 }
   },
 
   {
     "model": "store.petservice",
     "pk": 1,
-    "fields": {
-      "pet": 1,
-      "service": 1,
-      "groomer": 1,
-      "date": "2026-06-01T12:00:00Z",
-      "created_at": "2026-06-01T12:00:00Z"
-    }
+    "fields": { "pet": 1, "service": 1, "groomer": 1, "date": "2026-06-01T12:00:00Z", "created_at": "2026-06-01T12:00:00Z" }
   },
   {
     "model": "store.petservice",
     "pk": 2,
-    "fields": {
-      "pet": 1,
-      "service": 2,
-      "groomer": 1,
-      "date": "2026-06-02T12:00:00Z",
-      "created_at": "2026-06-02T12:00:00Z"
-    }
+    "fields": { "pet": 2, "service": 2, "groomer": 2, "date": "2026-06-02T12:00:00Z", "created_at": "2026-06-02T12:00:00Z" }
   },
   {
     "model": "store.petservice",
     "pk": 3,
-    "fields": {
-      "pet": 2,
-      "service": 3,
-      "groomer": 2,
-      "date": "2026-06-03T12:00:00Z",
-      "created_at": "2026-06-03T12:00:00Z"
-    }
+    "fields": { "pet": 3, "service": 3, "groomer": 3, "date": "2026-06-03T12:00:00Z", "created_at": "2026-06-03T12:00:00Z" }
+  },
+  {
+    "model": "store.petservice",
+    "pk": 4,
+    "fields": { "pet": 4, "service": 4, "groomer": 4, "date": "2026-06-04T12:00:00Z", "created_at": "2026-06-04T12:00:00Z" }
+  },
+  {
+    "model": "store.petservice",
+    "pk": 5,
+    "fields": { "pet": 5, "service": 5, "groomer": 5, "date": "2026-06-05T12:00:00Z", "created_at": "2026-06-05T12:00:00Z" }
+  },
+  {
+    "model": "store.petservice",
+    "pk": 6,
+    "fields": { "pet": 6, "service": 6, "groomer": 6, "date": "2026-06-06T12:00:00Z", "created_at": "2026-06-06T12:00:00Z" }
   }
 ]
