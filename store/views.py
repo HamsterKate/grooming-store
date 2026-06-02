@@ -28,6 +28,16 @@ class GroomerListView(generic.ListView):
     context_object_name = "groomers"
     paginate_by = 2
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["search_fields"] = [
+            ("name", "Name"),
+            ("specialization", "Specialization"),
+        ]
+
+        return context
+
 
 class GroomerDetailView(generic.DetailView):
     model = Groomer
