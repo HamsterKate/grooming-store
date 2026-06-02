@@ -5,3 +5,9 @@ SEARCH_FIELDS = {
         ("qualification", "Qualification"),
     ],
 }
+
+FIELD_LOOKUP = {
+    "first_name": "first_name__icontains",
+    "last_name": "last_name__icontains",
+    "qualification": "qualifications__name__icontains",
+}
