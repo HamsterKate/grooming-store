@@ -18,11 +18,16 @@
   <div>
     {% if user.is_authenticated %}
       <span class="mr-2">{{ user.username }}</span>
-{#      <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-secondary">#}
-        Logout
-{#      </a>#}
+
+      <form action="{% url 'logout' %}" method="post" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-secondary">
+          Logout
+        </button>
+      </form>
+
     {% else %}
-      <a href="{% url 'store:login' %}" class="btn btn-sm btn-outline-primary">
+      <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary">
         Login
       </a>
     {% endif %}
