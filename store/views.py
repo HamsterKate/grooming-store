@@ -27,6 +27,10 @@ class GroomerListView(generic.ListView):
     queryset = Groomer.objects.all()
     context_object_name = "groomers"
     paginate_by = 2
+    search_fields = [
+        ("first_name", "FirtName"),
+        ("qualification", "Qualification"),
+    ]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
