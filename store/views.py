@@ -4,6 +4,8 @@ from django.db.models import Q
 
 from store.models import Groomer, Service, Pet
 from core.search_registry import FIELD_LOOKUP
+from core.mixins import SearchMixin
+
 
 # Create your views here.
 def index(request):
@@ -23,32 +25,17 @@ def index(request):
     )
 
 
-class GroomerListView(generic.ListView):
+class GroomerListView(SearchMixin, generic.ListView):
     model = Groomer
     context_object_name = "groomers"
     paginate_by = 2
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-
-        query = self.request.GET.get("query")
-        field = self.request.GET.get("field")
-
-        if query and field:
-            lookup = FIELD_LOOKUP.get(field)
-
-            if lookup:
-                queryset = queryset.filter(
-                    Q(**{lookup: query})
-                )
-
-        return queryset
 
 class GroomerDetailView(generic.DetailView):
     model = Groomer
 
 
-class ServiceListView(generic.ListView):
+class ServiceListView(SearchMixin, generic.ListView):
     model = Service
     queryset = Service.objects.all()
     context_object_name = "services"
@@ -59,7 +46,7 @@ class ServiceDetailView(generic.DetailView):
     model = Service
 
 
-class PetListView(generic.ListView):
+class PetListView(SearchMixin, generic.ListView):
     model = Pet
     queryset = Pet.objects.select_related("groomer").prefetch_related("services", "petservice_set")
     context_object_name = "pets"
