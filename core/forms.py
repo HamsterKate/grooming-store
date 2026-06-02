@@ -6,19 +6,19 @@ class SearchForm(forms.Form):
         max_length=100,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search...",
-                "class": "form-control form-control-sm",
-            },
-        ),
+        widget=forms.TextInput(attrs={
+            "class": "form-control form-control-sm",
+            "placeholder": "Search..."
+        }),
     )
-    field = forms.CharField(
+
+    field = forms.ChoiceField(
         required=False,
         label="",
     )
+
     def __init__(self, *args, **kwargs):
         fields_choices = kwargs.pop("fields_choices", [])
+
         super().__init__(*args, **kwargs)
         self.fields["field"].choices = fields_choices
-
