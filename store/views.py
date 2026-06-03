@@ -115,6 +115,10 @@ class PetCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.groomer = self.request.user.groomer_profile
         return super().form_valid(form)
 
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
+
 
 class PetUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Pet

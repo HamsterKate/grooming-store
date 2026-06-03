@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -29,6 +30,10 @@ class Service(models.Model):
         verbose_name = "Service"
         verbose_name_plural = "Services"
         ordering = ["name"]
+
+    def clean(self):
+        if len(self.name.strip()) < 3:
+            raise ValidationError("Service name must be at least 3 characters long")
 
 
 class Qualification(models.Model):
@@ -76,6 +81,13 @@ class Groomer(models.Model):
             "last_name",
         ]
 
+    def clean(self):
+        if len(self.first_name.strip()) < 2:
+            raise ValidationError("First name is too short")
+
+        if len(self.last_name.strip()) < 2:
+            raise ValidationError("Last name is too short")
+
 
 class Pet(models.Model):
     name = models.CharField(
@@ -110,6 +122,13 @@ class Pet(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        if len(self.name.strip()) < 2:
+            raise ValidationError("Pet name is too short")
+
+        if not self.species:
+            raise ValidationError("Species is required")
 
 
 class PetService(models.Model):
