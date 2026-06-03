@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
@@ -46,7 +47,7 @@ class ServiceDetailView(generic.DetailView):
     model = Service
 
 
-class PetListView(SearchMixin, generic.ListView):
+class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
     model = Pet
     queryset = Pet.objects.select_related("groomer").prefetch_related("services", "petservice_set")
     context_object_name = "pets"
