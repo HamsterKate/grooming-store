@@ -4,7 +4,11 @@ from .models import Service, Groomer, Pet, Qualification, PetService
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("name", "service_type", "description",)
+    list_display = (
+        "name",
+        "service_type",
+        "description",
+    )
     list_filter = ("service_type",)
     search_fields = ("name",)
     ordering = ("name",)
@@ -54,6 +58,3 @@ class PetServiceAdmin(admin.ModelAdmin):
     list_filter = ("service", "groomer", "date")
     search_fields = ("pet__name", "service__name", "groomer__first_name")
     autocomplete_fields = ("pet", "service", "groomer")
-
-
-

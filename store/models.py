@@ -57,7 +57,7 @@ class Groomer(models.Model):
     last_name = models.CharField(
         max_length=50,
     )
-    qualifications= models.ManyToManyField(
+    qualifications = models.ManyToManyField(
         Qualification,
         related_name="groomers",
         blank=True,
@@ -96,11 +96,7 @@ class Pet(models.Model):
         null=True,
         related_name="pets",
     )
-    services = models.ManyToManyField(
-        Service,
-        blank=True,
-        related_name="pets"
-    )
+    services = models.ManyToManyField(Service, blank=True, related_name="pets")
 
     @property
     def last_service(self):
@@ -119,7 +115,9 @@ class Pet(models.Model):
 class PetService(models.Model):
     pet = models.ForeignKey("Pet", on_delete=models.CASCADE)
     service = models.ForeignKey("Service", on_delete=models.CASCADE)
-    groomer = models.ForeignKey("Groomer", on_delete=models.SET_NULL, null=True, blank=True)
+    groomer = models.ForeignKey(
+        "Groomer", on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     date = models.DateTimeField()
 

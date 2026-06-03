@@ -1,14 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
-from django.db.models import Q
 
+from store.forms import PetForm
 from store.models import Groomer, Service, Pet
-from core.search_registry import FIELD_LOOKUP
 from core.mixins import SearchMixin
 
 
-# Create your views here.
 def index(request):
     num_groomers = Groomer.objects.count()
     num_services = Service.objects.count()
@@ -49,7 +48,9 @@ class ServiceDetailView(generic.DetailView):
 
 class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
     model = Pet
-    queryset = Pet.objects.select_related("groomer").prefetch_related("services", "petservice_set")
+    queryset = Pet.objects.select_related("groomer").prefetch_related(
+        "services", "petservice_set"
+    )
     context_object_name = "pets"
     paginate_by = 10
 
@@ -62,3 +63,27 @@ class PetDetailView(generic.DetailView):
         "petservice_set__groomer",
     )
     context_object_name = "pet"
+
+
+class PetCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Pet
+    form_class = PetForm
+    template_name = "store/pet_form.html"
+    success_url = reverse_lazy("store:pet-list")
+
+    def form_valid(self, form):
+        form.instance.groomer = self.request.user.groomer_profile
+        return super().form_valid(form)
+
+
+class PetUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Pet
+    form_class = PetForm
+    template_name = "store/pet_form.html"
+    success_url = reverse_lazy("store:pet-list")
+
+
+class PetDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Pet
+    template_name = "store/pet_confirm_delete.html"
+    success_url = reverse_lazy("store:pet-list")
