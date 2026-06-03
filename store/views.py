@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from store.forms import PetForm
+from store.forms import PetForm, GroomerForm, ServiceForm
 from store.models import Groomer, Service, Pet
 from core.mixins import SearchMixin
 
@@ -35,6 +35,26 @@ class GroomerDetailView(generic.DetailView):
     model = Groomer
 
 
+class GroomerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Groomer
+    form_class = GroomerForm
+    template_name = "store/groomer_form.html"
+    success_url = reverse_lazy("store:groomer-list")
+
+
+class GroomerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Groomer
+    form_class = GroomerForm
+    template_name = "store/groomer_form.html"
+    success_url = reverse_lazy("store:groomer-list")
+
+
+class GroomerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Groomer
+    template_name = "store/groomer_confirm_delete.html"
+    success_url = reverse_lazy("store:groomer-list")
+
+
 class ServiceListView(SearchMixin, generic.ListView):
     model = Service
     queryset = Service.objects.all()
@@ -44,6 +64,26 @@ class ServiceListView(SearchMixin, generic.ListView):
 
 class ServiceDetailView(generic.DetailView):
     model = Service
+
+
+class ServiceCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Service
+    form_class = ServiceForm
+    template_name = "store/service_form.html"
+    success_url = reverse_lazy("store:service-list")
+
+
+class ServiceUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Service
+    form_class = ServiceForm
+    template_name = "store/service_form.html"
+    success_url = reverse_lazy("store:service-list")
+
+
+class ServiceDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Service
+    template_name = "store/service_confirm_delete.html"
+    success_url = reverse_lazy("store:service-list")
 
 
 class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
