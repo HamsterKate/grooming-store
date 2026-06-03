@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}Service form{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3">Service form</h2>
+
+  <form method="post" class="card card-body">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+      Save Service
+    </button>
+  </form>
+
+  <a href="{% url 'store:service-list' %}" class="btn btn-link mt-3">
+    Back to list
+  </a>
+{% endblock %}
