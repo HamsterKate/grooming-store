@@ -1,19 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Groomer form{% endblock %}
+{% block title %}
+  Groomer form
+{% endblock %}
 
 {% block content %}
   <h2 class="mb-3">Groomer form</h2>
 
-  <form method="post" class="card card-body">
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button type="submit" class="btn btn-primary">
-      Save Groomer
-    </button>
-  </form>
+  {% include "includes/form.html" %}
 
   <a href="{% url 'store:groomer-list' %}" class="btn btn-link mt-3">
     Back to list
