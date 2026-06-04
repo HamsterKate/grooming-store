@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib import messages
 
 from store.forms import PetForm, GroomerForm, ServiceForm
 from store.models import Groomer, Service, Pet
@@ -41,6 +42,11 @@ class GroomerCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "store/groomer_form.html"
     success_url = reverse_lazy("store:groomer-list")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Groomer created successfully")
+        return response
+
 
 class GroomerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Groomer
@@ -48,6 +54,10 @@ class GroomerUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "store/groomer_form.html"
     success_url = reverse_lazy("store:groomer-list")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Groomer updated successfully")
+        return response
 
 class GroomerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Groomer
@@ -72,6 +82,11 @@ class ServiceCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "store/service_form.html"
     success_url = reverse_lazy("store:service-list")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Service created successfully")
+        return response
+
 
 class ServiceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Service
@@ -79,11 +94,20 @@ class ServiceUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "store/service_form.html"
     success_url = reverse_lazy("store:service-list")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Service updated successfully")
+        return response
+
 
 class ServiceDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Service
     template_name = "store/service_confirm_delete.html"
     success_url = reverse_lazy("store:service-list")
+
+    def form_valid(self, form):
+        messages.success(self.request, "Service deleted successfully")
+        return super().form_valid(form)
 
 
 class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
@@ -119,6 +143,12 @@ class PetCreateView(LoginRequiredMixin, generic.CreateView):
         print(form.errors)
         return super().form_invalid(form)
 
+    def form_valid(self, form):
+        form.instance.groomer = self.request.user.groomer_profile
+        response = super().form_valid(form)
+        messages.success(self.request, "Pet created successfully")
+        return response
+
 
 class PetUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Pet
@@ -126,8 +156,17 @@ class PetUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "store/pet_form.html"
     success_url = reverse_lazy("store:pet-list")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Pet updated successfully")
+        return response
+
 
 class PetDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Pet
     template_name = "store/pet_confirm_delete.html"
     success_url = reverse_lazy("store:pet-list")
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "Pet deleted successfully")
+        return super().delete(request, *args, **kwargs)
