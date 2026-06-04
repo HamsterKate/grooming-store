@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.contrib import messages
 
@@ -63,6 +63,22 @@ class GroomerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Groomer
     template_name = "store/groomer_confirm_delete.html"
     success_url = reverse_lazy("store:groomer-list")
+    context_object_name = "groomer"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["edit_url"] = reverse(
+            "store:groomer-update",
+            args=[self.object.pk]
+        )
+        context["delete_url"] = reverse(
+            "store:groomer-delete",
+            args=[self.object.pk]
+        )
+        context["back_url"] = reverse("store:groomer-list")
+
+        return context
 
 
 class ServiceListView(SearchMixin, generic.ListView):
@@ -74,6 +90,22 @@ class ServiceListView(SearchMixin, generic.ListView):
 
 class ServiceDetailView(generic.DetailView):
     model = Service
+    context_object_name = "service"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["edit_url"] = reverse(
+            "store:service-update",
+            args=[self.object.pk]
+        )
+        context["delete_url"] = reverse(
+            "store:service-delete",
+            args=[self.object.pk]
+        )
+        context["back_url"] = reverse("store:service-list")
+
+        return context
 
 
 class ServiceCreateView(LoginRequiredMixin, generic.CreateView):
@@ -105,9 +137,9 @@ class ServiceDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "store/service_confirm_delete.html"
     success_url = reverse_lazy("store:service-list")
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
         messages.success(self.request, "Service deleted successfully")
-        return super().form_valid(form)
+        return super().delete(request, *args, **kwargs)
 
 
 class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
@@ -116,7 +148,7 @@ class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
         "services", "petservice_set"
     )
     context_object_name = "pets"
-    paginate_by = 10
+    paginate_by = 5
 
 
 class PetDetailView(generic.DetailView):
@@ -128,16 +160,24 @@ class PetDetailView(generic.DetailView):
     )
     context_object_name = "pet"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["edit_url"] = reverse(
+            "store:pet-update",
+            args=[self.object.pk]
+        )
+        context["delete_url"] = reverse(
+            "store:pet-delete",
+            args=[self.object.pk]
+        )
+        return context
+
 
 class PetCreateView(LoginRequiredMixin, generic.CreateView):
     model = Pet
     form_class = PetForm
     template_name = "store/pet_form.html"
     success_url = reverse_lazy("store:pet-list")
-
-    def form_valid(self, form):
-        form.instance.groomer = self.request.user.groomer_profile
-        return super().form_valid(form)
 
     def form_invalid(self, form):
         print(form.errors)
