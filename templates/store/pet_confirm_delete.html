@@ -3,10 +3,12 @@
 {% block content %}
   <h2>Delete pet?</h2>
 
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">
-      Confirm
-    </button>
-  </form>
+  <p>
+    Are you sure you want to delete
+    <strong>{{ object }}</strong>?
+  </p>
+
+  {% with cancel_url="/pets/" %}
+    {% include "includes/confirm_delete.html" %}
+  {% endwith %}
 {% endblock %}
