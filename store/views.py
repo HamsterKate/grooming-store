@@ -34,6 +34,22 @@ class GroomerListView(SearchMixin, generic.ListView):
 
 class GroomerDetailView(generic.DetailView):
     model = Groomer
+    context_object_name = "groomer"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["edit_url"] = reverse(
+            "store:groomer-update",
+            args=[self.object.pk]
+        )
+        context["delete_url"] = reverse(
+            "store:groomer-delete",
+            args=[self.object.pk]
+        )
+        context["back_url"] = reverse("store:groomer-list")
+
+        return context
 
 
 class GroomerCreateView(LoginRequiredMixin, generic.CreateView):
