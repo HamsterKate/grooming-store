@@ -48,27 +48,33 @@
           <div class="row">
             <div class="col-md-4 position-relative">
               <div class="p-3 text-center">
-                <h1 class="text-gradient text-primary"><span id="state1" countTo="{{ num_groomers }}">0</span>+</h1>
-                <h5 class="mt-3">Groomers</h5>
-                <p class="text-sm">Caring hands, gentle approach, and years of experience with pets of all sizes.</p>
+                <a href="{% url 'store:groomer-list' %}">
+                  <h1 class="text-gradient text-primary"><span id="state1" countTo="{{ num_groomers }}">0</span>+</h1>
+                  <h5 class="mt-3">Groomers</h5>
+                  <p class="text-sm">Caring hands, gentle approach, and years of experience with pets of all sizes.</p>
+                </a>
               </div>
               <hr class="vertical dark">
             </div>
             <div class="col-md-4 position-relative">
               <div class="p-3 text-center">
-                <h1 class="text-gradient text-primary"> <span id="state2" countTo="{{ num_services }}">0</span>+</h1>
-                <h5 class="mt-3">Services</h5>
-                <p class="text-sm">From simple baths to full spa care — everything your pet needs in one place.</p>
+                <a href="{% url 'store:service-list' %}">
+                  <h1 class="text-gradient text-primary"> <span id="state2" countTo="{{ num_services }}">0</span>+</h1>
+                  <h5 class="mt-3">Services</h5>
+                  <p class="text-sm">From simple baths to full spa care — everything your pet needs in one place.</p>
+                </a>
               </div>
               <hr class="vertical dark">
             </div>
             <div class="col-md-4">
               <div class="p-3 text-center">
-                <h1 class="text-gradient text-primary">
-                  <span id="state3" countTo="{{ num_pets }}">0</span>+
-                </h1>
-                <h5 class="mt-3">Customers</h5>
-                <p class="text-sm">Happy pets. Happy owners. Every single day.</p>
+                <a href="{% url 'store:pet-list' %}">
+                  <h1 class="text-gradient text-primary">
+                    <span id="state3" countTo="{{ num_pets }}">0</span>+
+                  </h1>
+                  <h5 class="mt-3">Customers</h5>
+                  <p class="text-sm">Happy pets. Happy owners. Every single day.</p>
+                </a>
               </div>
             </div>
           </div>
