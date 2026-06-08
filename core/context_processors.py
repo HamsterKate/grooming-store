@@ -17,5 +17,9 @@ def search_form(request):
 
 
 def cfg_assets_root(request):
-
-    return { 'ASSETS_ROOT' : settings.ASSETS_ROOT }
+    return {
+        "ASSETS_ROOT":
+                getattr(settings,
+                        "ASSETS_ROOT",
+                        "/static/assets")
+    }
