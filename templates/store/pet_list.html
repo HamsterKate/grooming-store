@@ -1,28 +1,25 @@
 {% extends "base.html" %}
+{% block title %}
+  Our Lovely Customers
+{% endblock %}
+{% block subtitle %}
 
+{% endblock %}
 {% block content %}
-	<div class="d-flex justify-content-between align-items-center mb-3">
 
-    <h2 class="mb-0">
-      Our Lovely Customers
-    </h2>
+<!-- HEADER ROW -->
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="{% url 'store:pet-create' %}" class="btn btn-primary">
-      + Create
-    </a>
-
-  </div>
-  {% if pets %}
-  	<table class="table">
+</div>
+{% if pets %}
+  	<table class="table text-center align-middle">
       <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Breed</th>
         <th>Last Service</th>
       </tr>
     {% for pet in pets %}
     	<tr>
-        <td>{{ pet.id }}</td>
         <td>
           <a href="{% url 'store:pet-detail' pet.pk %}">
             {{ pet.name }}
@@ -33,7 +30,14 @@
       </tr>
     {% endfor %}
     </table>
-  {% else %}
+    {% else %}
     <p>Waiting for our first customer</p>
   {% endif %}
+	<div class="d-flex justify-content-between align-items-center mb-3">
+		{% include "includes/pagination.html" %}
+		<a href="{% url 'store:pet-create' %}"
+		   class="btn bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center btn-add">
+		  +
+		</a>
+	</div>
 {% endblock %}
