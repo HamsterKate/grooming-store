@@ -9,17 +9,17 @@ def search_form(request):
 
     fields_choices = SEARCH_FIELDS.get(view_name, [])
 
-    is_home = (view_name == "index")
+    is_list_page = view_name.endswith("-list")
 
     form = SearchForm(
         request.GET or None,
         fields_choices=fields_choices,
-        show_field=not is_home
+        show_field=is_list_page
     )
 
     return {
-        "search_form": form,
-        "is_home": is_home
+        "search_form": form if is_list_page else None,
+        "is_list_page": is_list_page
     }
 
 

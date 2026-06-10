@@ -22,27 +22,27 @@
 				    </div>
 				  </div>
 
-					{% if not is_home %}
-					  <!-- ================= CENTER: SEARCH ================= -->
-					  <div class="flex-grow-1 mx-4 d-flex align-items-center justify-content-center">
+					{% if search_form %}
+					<!-- ================= CENTER: SEARCH ================= -->
+					<div class="flex-grow-1 mx-4 d-flex align-items-center justify-content-center">
 
-					    <form method="get"
-					          class="d-flex align-items-center gap-2 w-100"
-					          style="max-width: 600px;">
+					  <form method="get"
+					        class="d-flex align-items-center gap-2 w-100"
+					        style="max-width: 600px;">
 
-					      {% if search_form.field %}
-					        <div class="flex-shrink-0" style="width: 100px; height: 43px;">
-					          {{ search_form.field }}
-					        </div>
-					      {% endif %}
-
-					      <div class="flex-grow-1" style="height: 43px;">
-					        {{ search_form.query }}
+					    {% if search_form.field %}
+					      <div class="flex-shrink-0" style="width: 160px;">
+					        {{ search_form.field }}
 					      </div>
+					    {% endif %}
 
-					    </form>
+					    <div class="flex-grow-1">
+					      {{ search_form.query }}
+					    </div>
 
-					  </div>
+					  </form>
+
+					</div>
 					{% endif %}
 
 					<!-- ================= RIGHT: USER ================= -->
