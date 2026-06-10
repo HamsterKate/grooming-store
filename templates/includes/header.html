@@ -56,10 +56,13 @@
 					        {{ user.username }}
 					      </span>
 
-					      <a href="/accounts/logout/"
-					         class="nav-link px-0 py-0 text-muted">
-					        Logout
-					      </a>
+					      <form action="{% url 'logout' %}" method="post" class="m-0">
+							    {% csrf_token %}
+							    <button type="submit"
+							            class="nav-link border-0 bg-transparent p-0 text-muted">
+							      Logout
+							    </button>
+							  </form>
 
 					    </div>
 
