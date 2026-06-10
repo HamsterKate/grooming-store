@@ -1,26 +1,30 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Delete Service
+  <div class="text-danger fw-bold">!?! Delete Service !?!</div>
 {% endblock %}
+{% block subtitle %}{% endblock %}
 
 {% block content %}
-  <h2>Delete Service</h2>
-
-  <p>
-    Are you sure you want to delete
-    <strong>{{ service }}</strong>?
-  </p>
+	<div class="col-12 py-4 px-5 text-center text-danger fw-bold">
+	  Are you sure you want to delete<br />
+	  <strong>{{ service }}</strong>?
+	</div>
 
   <form method="post">
     {% csrf_token %}
 
-    <button type="submit" class="btn btn-danger">
-      Delete
-    </button>
+    <div class="d-flex justify-content-center">
 
-    <a href="{% url 'store:service-list' %}" class="btn btn-secondary">
-      Cancel
-    </a>
+	    <a href="{% url 'store:groomer-list' %}" class="btn bg-gradient-success w-auto me-1 mb-0">
+	      Cancel
+	    </a>
+
+	    <button type="submit" class="btn bg-gradient-danger w-auto me-1 mb-0">
+	      Delete
+	    </button>
+		</div>
   </form>
 {% endblock %}
+
+
