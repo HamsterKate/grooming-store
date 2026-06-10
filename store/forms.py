@@ -2,7 +2,18 @@ from django import forms
 from .models import Pet, Groomer, Service
 
 
-class PetForm(forms.ModelForm):
+class BaseStyledForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                "class": "form-control"
+            })
+
+
+class PetForm(BaseStyledForm):
     class Meta:
         model = Pet
         fields = ["name", "species", "breed", "services"]
@@ -14,7 +25,7 @@ class PetForm(forms.ModelForm):
         return name
 
 
-class GroomerForm(forms.ModelForm):
+class GroomerForm(BaseStyledForm):
     class Meta:
         model = Groomer
         fields = ["first_name", "last_name", "qualifications"]
@@ -32,7 +43,7 @@ class GroomerForm(forms.ModelForm):
         return name
 
 
-class ServiceForm(forms.ModelForm):
+class ServiceForm(BaseStyledForm):
     class Meta:
         model = Service
         fields = ["name", "service_type", "description"]
