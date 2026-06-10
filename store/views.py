@@ -101,7 +101,7 @@ class ServiceListView(SearchMixin, generic.ListView):
     model = Service
     queryset = Service.objects.all()
     context_object_name = "services"
-    paginate_by = 2
+    paginate_by = 4
 
 
 class ServiceDetailView(generic.DetailView):
@@ -164,7 +164,7 @@ class PetListView(LoginRequiredMixin, SearchMixin, generic.ListView):
         "services", "petservice_set"
     )
     context_object_name = "pets"
-    paginate_by = 5
+    paginate_by = 4
 
 
 class PetDetailView(generic.DetailView):
