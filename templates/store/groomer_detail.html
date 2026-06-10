@@ -1,19 +1,64 @@
 {% extends "base.html" %}
 
-{% block content %}
-	<h1>Groomer Info</h1>
-  <p><strong>Groomer:</strong>
-    {{ groomer.first_name }} {{ groomer.last_name }}
-  </p>
+{% block title %}
+  {{ groomer.first_name }} {{ groomer.last_name }}
+{% endblock %}
+{% block subtitle %}{% endblock %}
 
-  <p><strong>With us since: </strong>{{ groomer.created_at }}</p>
-  <p><strong>Qualifications:</strong></p>
-  <ul>
-    {% for qualification in groomer.qualifications.all %}
-      <li>{{ qualification.name }}</li>
-      {% empty %}
-    <li>No qualifications assigned</li>
-    {% endfor %}
-  </ul>
+{% block content %}
+<div class="col-12 py-4">
+  <div class="card shadow-lg border-0">
+    <div class="card-body p-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">Personal Information</h5>
+          <p>
+            <strong>First name:</strong>
+            {{ groomer.first_name }}
+          </p>
+          <p>
+            <strong>Last name:</strong>
+            {{ groomer.last_name }}
+          </p>
+          <p>
+            <strong>Working with us since:</strong>
+            {{ groomer.created_at|date:"F Y" }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="mb-3">Qualifications</h5>
+          <ul class="list-group">
+            {% for qualification in groomer.qualifications.all %}
+              <li class="list-group-item">
+                {{ qualification.name }}
+              </li>
+            {% empty %}
+              <li class="list-group-item text-muted">
+                No qualifications
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <a href="{{ back_url }}"
+           class="btn btn-outline-secondary">
+          ← Back
+        </a>
+        <div>
+          <a href="{{ edit_url }}"
+             class="btn btn-warning">
+            Edit
+          </a>
+          <a href="{{ delete_url }}"
+             class="btn btn-danger">
+            Delete
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   {% include "includes/detail_actions.html" %}
 {% endblock %}

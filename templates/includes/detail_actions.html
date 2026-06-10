@@ -1,11 +1,17 @@
-<a href="{{ back_url }}" class="btn btn-secondary">
-  Back
-</a>
+<div class="d-flex justify-content-between">
+  <a href="{{ back_url }}"
+     class="btn btn-outline-secondary">
+    ← Back
+  </a>
+  <div>
+	  <a href="{{ edit_url }}"
+	     class="btn bg-gradient-warning w-auto me-1 mb-0">
+      Edit
+    </a>
 
-<a href="{{ edit_url }}" class="btn btn-warning">
-  Edit
-</a>
-
-<a href="{{ delete_url }}" class="btn btn-danger">
-  Delete
-</a>
+    <a href="{{ delete_url }}"
+       class="btn bg-gradient-danger w-auto me-1 mb-0">
+      Delete
+    </a>
+  </div>
+</div>
