@@ -1,38 +1,42 @@
 {% extends "base.html" %}
 
+{% block title %}
+  {{ pet.name }}
+{% endblock %}
+{% block subtitle %}{% endblock %}
+
 {% block content %}
-  <h1>{{ pet.name }}</h1>
+	<div class="col-12 py-4 px-5">
+    <h5 class="mb-3">Common Data</h5>
+    <p><strong>Breed:</strong> {{ pet.breed }}</p>
+	  <p><strong>Species:</strong> {{ pet.species }}</p>
+	  <p><strong>Groomer:</strong>
+	    {{ pet.groomer.first_name }} {{ pet.groomer.last_name }}
+	  </p>
+		<hr>
+	  <h5>Services history</h5>
+	  {% if pet.petservice_set.all %}
+	    <table class="table">
+	      <tr>
+	        <th>Service</th>
+	        <th>Groomer</th>
+	        <th>Date</th>
+	      </tr>
 
-  <p><strong>Breed:</strong> {{ pet.breed }}</p>
-  <p><strong>Species:</strong> {{ pet.species }}</p>
-
-  <p><strong>Groomer:</strong>
-    {{ pet.groomer.first_name }} {{ pet.groomer.last_name }}
-  </p>
+	      {% for ps in pet.petservice_set.all %}
+	        <tr>
+	          <td>{{ ps.service.name }}</td>
+	          <td>{{ ps.groomer }}</td>
+	          <td>{{ ps.date }}</td>
+	        </tr>
+	      {% endfor %}
+	    </table>
+	  {% else %}
+	    <p>No services yet</p>
+	  {% endif %}
 
   <hr>
-
-  <h3>Services history</h3>
-
-  {% if pet.petservice_set.all %}
-    <table class="table">
-      <tr>
-        <th>Service</th>
-        <th>Groomer</th>
-        <th>Date</th>
-      </tr>
-
-      {% for ps in pet.petservice_set.all %}
-        <tr>
-          <td>{{ ps.service.name }}</td>
-          <td>{{ ps.groomer }}</td>
-          <td>{{ ps.date }}</td>
-        </tr>
-      {% endfor %}
-    </table>
-  {% else %}
-    <p>No services yet</p>
-  {% endif %}
-
   {% include "includes/detail_actions.html" %}
+	</div>
+
 {% endblock %}
