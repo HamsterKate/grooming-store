@@ -7,6 +7,8 @@ from django.contrib import messages
 from store.forms import PetForm, GroomerForm, ServiceForm
 from store.models import Groomer, Service, Pet
 from core.mixins import SearchMixin
+from core.forms import SearchForm
+from core.search_registry import SEARCH_FIELDS
 
 
 def index(request):
@@ -24,6 +26,13 @@ def index(request):
         "store/index.html",
         context=context,
     )
+
+
+class IndexView(generic.ListView):
+    model = Pet  # або будь-яка базова
+    template_name = "store/index.html"
+
+    search_view_name = "index"
 
 
 class GroomerListView(SearchMixin, generic.ListView):
