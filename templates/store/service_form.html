@@ -1,15 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}
-  Service form
-{% endblock %}
+{% block title %}Service Form{% endblock %}
+{% block subtitle %}Edit / Create{% endblock %}
 
 {% block content %}
-  <h2 class="mb-3">Service form</h2>
-
-  {% include "includes/form.html" %}
-
-  <a href="{% url 'store:service-list' %}" class="btn btn-link mt-3">
-    Back to list
-  </a>
+	{% include "includes/form.html" %}
 {% endblock %}

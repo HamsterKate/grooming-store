@@ -1,9 +1,20 @@
-<form method="post" class="card card-body">
-  {% csrf_token %}
-
-  {{ form.as_p }}
-
-  <button type="submit" class="btn btn-primary">
-    Save
-  </button>
-</form>
+<div class="col-12 py-4 px-5">
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label>{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <small class="text-danger d-block">
+            {{ field.errors|striptags }}
+          </small>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div class="d-flex justify-content-between mt-4">
+	    {% include "includes/back_button.html" %}
+      <button class="btn bg-gradient-primary">Save</button>
+    </div>
+  </form>
+</div>
