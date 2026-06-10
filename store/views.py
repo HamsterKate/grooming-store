@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.contrib import messages
 
-from store.forms import PetForm, GroomerForm, ServiceForm
+from store.forms import PetForm, GroomerForm, ServiceForm, LoginForm
 from store.models import Groomer, Service, Pet
 from core.mixins import SearchMixin
 from core.forms import SearchForm
@@ -26,6 +27,11 @@ def index(request):
         "store/index.html",
         context=context,
     )
+
+
+class CustomLoginView(LoginView):
+    authentication_form = LoginForm
+    template_name = "registration/login.html"
 
 
 class IndexView(generic.ListView):

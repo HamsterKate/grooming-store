@@ -1,19 +1,58 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Sign In{% endblock title %}
 
 {% block content %}
-<div class="col-12 py-4 px-5">
-    <h3 class="mb-3">Login</h3>
 
-    <form method="post">
-      {% csrf_token %}
-	    <div class="mb-3">
-        {{ form.as_p }}
-	    </div>
-      <button type="submit" class="btn btn-primary btn-block">
-        Login
-      </button>
-    </form>
+<section>
+  <div class="col-12 py-4 px-5">
+        <!-- LOGIN CARD -->
+    <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-auto">
 
+      <!-- MESSAGE -->
+      <div class="text-center mb-3">
+        {% if msg %}
+          <p class="fw-semibold">{{ msg|safe }}</p>
+        {% else %}
+          <p class="fw-semibold">Please enter your credentials</p>
+        {% endif %}
+      </div>
+
+{#      <div class="mb-3">#}
+
+        <form method="post" role="form">
+          {% csrf_token %}
+
+          <!-- USERNAME -->
+          <div class="mb-3">
+            <label>Username:</label>
+            {{ form.username }}
+          </div>
+
+          <!-- PASSWORD -->
+          <div class="mb-3">
+            <label>Password:</label>
+            {{ form.password }}
+          </div>
+
+          <!-- REMEMBER ME -->
+          <div class="flex-row form-check form-switch align-content-center">
+            <input class="form-check-input" type="checkbox" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="text-center">
+            <button type="submit"
+                    name="login"
+                    class="btn btn-lg bg-gradient-primary w-100 mt-4">
+              Sign in
+            </button>
+          </div>
+        </form>
+{#      </div>#}
+    </div>
   </div>
-</div>
-{% endblock %}
+</section>
+
+{% endblock content %}
