@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 
-{% block content %}
-	<h1>Service Info</h1>
-  <p><strong>Service:</strong>
-    {{ service.name }}
-  </p>
+{% block title %}
+  {{ service.name }}
+{% endblock %}
+{% block subtitle %}{% endblock %}
 
-  <p><strong>Service Type: </strong>{{ service.service_type }}</p>
-  <p><strong>Description:</strong></p>
-  {% if service.description %}
-  	<i>{{ service.description }}</i>
-    {% else %}
-    <i>Sorry... Description will be added soon</i>
-  {% endif %}
-  <br>
+{% block content %}
+<div class="col-12 py-4 px-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="mb-3">Service Type</h5>
+      <p>{{ service.service_type }}</p>
+    </div>
+    <div class="col-md-6">
+      <h5 class="mb-3">Description</h5>
+      <ul class="list-group">
+        {% if service.description %}
+			    <i>{{ service.description }}</i>
+			    {% else %}
+			    <i>Sorry... Description will be added soon</i>
+			  {% endif %}
+      </ul>
+    </div>
+  </div>
+  <hr>
   {% include "includes/detail_actions.html" %}
+</div>
+
 {% endblock %}
