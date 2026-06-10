@@ -29,7 +29,7 @@ def index(request):
 class GroomerListView(SearchMixin, generic.ListView):
     model = Groomer
     context_object_name = "groomers"
-    paginate_by = 2
+    paginate_by = 4
 
 
 class GroomerDetailView(generic.DetailView):

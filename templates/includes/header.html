@@ -1,36 +1,80 @@
-<nav class="navbar navbar-light bg-light border-bottom">
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar blur blur-rounded shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
 
-  <a class="navbar-brand" href="/">
-    Grooming Store
-  </a>
+          <!-- ================= MENU ================= -->
+          <div class="dropdown">
+            <a class="nav-link d-flex align-items-center px-2 py-1"
+               href="#"
+               data-bs-toggle="dropdown">
+              <i class="fa fa-bars me-2"></i>
+              <span class="small fw-semibold">Menu</span>
+            </a>
+            <ul class="dropdown-menu shadow-sm">
+	            <li><a class="dropdown-item" href="{% url 'store:index' %}">Home</a></li>
+              <li><a class="dropdown-item" href="{% url 'store:groomer-list' %}">Groomers</a></li>
+              <li><a class="dropdown-item" href="{% url 'store:service-list' %}">Services</a></li>
+              <li><a class="dropdown-item" href="{% url 'store:pet-list' %}">Pets</a></li>
+            </ul>
+          </div>
 
-  <form method="get" class="form-inline mx-auto">
-
-    {{ search_form.field }}
-    {{ search_form.query }}
-
-    <button type="submit" class="btn btn-outline-primary btn-sm ml-2">
-      Search
-    </button>
-
-  </form>
-
-  <div>
-    {% if user.is_authenticated %}
-      <span class="mr-2">{{ user.username }}</span>
-
-      <form action="{% url 'logout' %}" method="post" class="d-inline">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-sm btn-outline-secondary">
-          Logout
-        </button>
-      </form>
-
-    {% else %}
-      <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary">
-        Login
-      </a>
-    {% endif %}
+          <!-- ================= SEARCH (ENTER ONLY) ================= -->
+          <div class="flex-grow-1 mx-4">
+            <form method="get" class="d-flex align-items-center justify-content-center gap-2">
+							<!-- scope dropdown -->
+							<select name="scope"
+							        class="form-select form-select-sm shadow-none border-0"
+							        style="
+							          width: 120px;
+							          height: 36px;
+							          background: #fff;
+							          border-radius: 8px;
+							        ">
+							  <option value="all">All</option>
+							  <option value="groomers">Groomers</option>
+							  <option value="services">Services</option>
+							  <option value="pets">Pets</option>
+							</select>
+							<!-- search input -->
+							<input type="text"
+							       name="q"
+							       value="{{ request.GET.q }}"
+							       class="form-control form-control-sm shadow-none border-0"
+							       placeholder="Search..."
+							       style="
+							         height: 36px;
+							         background: #fff;
+							         border-radius: 8px;
+							       ">
+            </form>
+          </div>
+          <!-- ================= USER ================= -->
+						<div class="d-flex align-items-center">
+						  {% if user.is_authenticated %}
+						    <span class="me-3 small fw-semibold d-flex align-items-center">
+						      {{ user.username }}
+						    </span>
+						    <form action="{% url 'logout' %}" method="post" class="d-flex align-items-center m-0">
+						      {% csrf_token %}
+						      <button type="submit"
+						              class="nav-link border-0 bg-transparent p-0 small fw-semibold"
+						              style="line-height: 1;">
+						        Logout
+						      </button>
+						    </form>
+						  {% else %}
+						    <a href="{% url 'login' %}"
+						       class="nav-link p-0 small fw-semibold d-flex align-items-center"
+						       style="line-height: 1;">
+						      Login
+						    </a>
+						  {% endif %}
+						</div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </div>
-
-</nav>
+</div>

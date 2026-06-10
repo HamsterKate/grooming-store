@@ -1,28 +1,25 @@
 {% extends "base.html" %}
-
+{% block title %}
+  Our Groomers
+{% endblock %}
+{% block subtitle %}
+	Caring hands, gentle approach, and years of experience with pets of all sizes.
+{% endblock %}
 {% block content %}
-	<div class="d-flex justify-content-between align-items-center mb-3">
 
-    <h2 class="mb-0">
-      Our Groomers
-    </h2>
+<!-- HEADER ROW -->
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="{% url 'store:groomer-create' %}" class="btn btn-primary">
-      + Create
-    </a>
-
-  </div>
-  {% if groomers %}
-  	<table class="table">
+</div>
+{% if groomers %}
+  	<table class="table text-center align-middle">
       <tr>
-        <th>ID</th>
         <th>Full name</th>
         <th>Qualifications</th>
-        <th>work with us since</th>
+        <th>With us since</th>
       </tr>
     {% for groomer in groomers %}
     	<tr>
-        <td>{{ groomer.id }}</td>
         <td>
           <a href="{% url 'store:groomer-detail' groomer.pk %}">
             {{ groomer.first_name }} {{ groomer.last_name }}
@@ -42,4 +39,11 @@
     {% else %}
     <p>Unfortunately currently we don't have any groomers</p>
   {% endif %}
+	<div class="d-flex justify-content-between align-items-center mb-3">
+		{% include "includes/pagination.html" %}
+		<a href="{% url 'store:groomer-create' %}"
+		   class="btn bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center btn-add">
+		  +
+		</a>
+	</div>
 {% endblock %}

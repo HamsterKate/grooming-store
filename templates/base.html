@@ -1,55 +1,93 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ ASSETS_ROOT }}/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ ASSETS_ROOT }}/img/favicon.png">
+  <link rel="canonical" href="https://appseed.us/ui-kit/soft-ui-design-system"/>
 
-  <title>
-    {% block title %}
-      Grooming Store
-    {% endblock %}
-  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/soft-design-system.css?v=1.0.1" rel="stylesheet" />
+	<link href="{{ ASSETS_ROOT }}/css/styles.css" rel="stylesheet" />
 
-  <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-  >
+  <!-- Specific CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
 
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<header class="header-2">
+	{% include "includes/header.html" %}
+  <div class="page-header section-height-50 relative hero-bg"
+       style="background-image: url('{{ ASSETS_ROOT }}/img/groomer_shop/gooming_store_image_blured.jpeg')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 text-center mx-auto">
+        <!-- GLASS TITLE -->
+          <div class="hero-title-glass hero-subtitle">
+            <h2 class="col-lg-7 mx-auto">
+              <a class="text-white font-weight-bold"
+							   target="_blank"
+							   href="https://appseed.us/ui-kit/soft-ui-design-system">
+                {% block title %}Grooming Store{% endblock %}
+              </a>
+            </h2>
+            <p class="lead text-white mt-1">
+	            {% block subtitle %}Your pets paradise{% endblock %}
+	          </p>
+          </div>
 
-  {% include "includes/header.html" %}
-
-  <div class="container-fluid mt-4 flex-grow-1">
-    <div class="row">
-
-      <div class="col-md-3">
-        {% block sidebar %}
-          {% include "includes/sidebar.html" %}
-        {% endblock %}
+        </div>
       </div>
-
-      <div class="col-md-8">
-        {% block content %}{% endblock %}
-        {% if is_paginated %}
-          {% include "includes/pagination.html" %}
-        {% endif %}
-      </div>
-
+    </div>
+    <div class="position-absolute w-100 z-index-1 bottom-0">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="moving-waves">
+          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+          <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+          <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
+        </g>
+      </svg>
     </div>
   </div>
+</header>
+
+<body class="{% block body_class %}{% endblock body_class %}">
+
+<section class="pt-4 pb-6" id="count-stats">
+    <div class="container-fluid px-5">
+      <div class="row">
+        <div class="col-lg-9 z-index-2 border-radius-xl mt-n10 mx-auto py-0 px-4 blur shadow-blur">
+          <div class="row">
+            {% block content %}{% endblock content %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   {% include "includes/footer.html" %}
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  {% include "includes/scripts.html" %}
+
+  <!-- Specific JS goes HERE -->
+  {% block javascripts %}{% endblock javascripts %}
 
 </body>
 </html>
