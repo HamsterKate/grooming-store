@@ -11,7 +11,7 @@
         </h6>
 
         <p class="text-sm">
-          Caring hands for your pets. Grooming, love, and professional care.
+          Caring hands for your pets. <br>Grooming, love, and professional care.
         </p>
       </div>
 
@@ -19,70 +19,13 @@
       <div class="col-lg-2 col-md-6 col-6">
         <h6 class="text-gradient text-primary text-sm">Company</h6>
         <ul class="flex-column ms-n3 nav">
-          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Groomers</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li><a class="dropdown-item" href="{% url 'store:index' %}">Home</a></li>
+          <li><a class="dropdown-item" href="{% url 'store:groomer-list' %}">Groomers</a></li>
+          <li><a class="dropdown-item" href="{% url 'store:service-list' %}">Services</a></li>
+          <li><a class="dropdown-item" href="{% url 'store:pet-list' %}">Pets</a></li>
         </ul>
       </div>
 
-      <!-- HELP -->
-      <div class="col-lg-2 col-md-6 col-6">
-        <h6 class="text-gradient text-primary text-sm">Help & Support</h6>
-        <ul class="flex-column ms-n3 nav">
-          <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Booking Help</a></li>
-        </ul>
-      </div>
-
-      <!-- PET CARE -->
-      <div class="col-lg-2 col-md-6 col-6">
-        <h6 class="text-gradient text-primary text-sm">Pet Care</h6>
-        <ul class="flex-column ms-n3 nav">
-          <li class="nav-item"><a class="nav-link" href="#">Health Tips</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Grooming Guide</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-        </ul>
-      </div>
-
-      <!-- FOLLOW US -->
-			<div class="col-md-3 mb-4 me-auto">
-			  <h6 class="text-gradient text-primary text-sm">Follow us</h6>
-
-			  <ul class="nav flex-column ms-n3">
-
-			    <!-- Instagram -->
-			    <li class="nav-item">
-			      <a class="nav-link d-flex align-items-center gap-2" href="#">
-			        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-			          <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 2A2.5 2.5 0 1 1 9.5 12 2.5 2.5 0 0 1 12 9.5zM17.8 6.2a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/>
-			        </svg>
-			        Instagram
-			      </a>
-			    </li>
-
-			    <!-- Facebook -->
-			    <li class="nav-item">
-			      <a class="nav-link d-flex align-items-center gap-2" href="#">
-			        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-			          <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2c0-2.2 1.3-3.4 3.3-3.4.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.1h2.4l-.4 3h-2v7A10 10 0 0 0 22 12z"/>
-			        </svg>
-			        Facebook
-			      </a>
-			    </li>
-
-			    <!-- TikTok -->
-			    <li class="nav-item">
-			      <a class="nav-link d-flex align-items-center gap-2" href="#">
-			        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-			          <path d="M16 2c.6 2.6 2.2 4.5 5 5v3c-2.2 0-4.1-.7-5-1.7V15c0 3.9-3.1 7-7 7s-7-3.1-7-7 3.1-7 7-7c.6 0 1.2.1 1.8.3v3.2c-.6-.3-1.2-.5-1.8-.5-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V2h3z"/>
-			        </svg>
-			        TikTok
-			      </a>
-			    </li>
-
-			  </ul>
-			</div>
 
       <!-- COPYRIGHT -->
       <div class="col-12">
